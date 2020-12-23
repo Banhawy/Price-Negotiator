@@ -7,6 +7,14 @@ import PriceDifference from './components/PriceDifference';
 const theme = createMuiTheme({
   typography: {
     fontFamily: ['Balsamiq Sans', 'Roboto', 'sans-serif'].join(',')
+  },
+  overrides: {
+    MuiInput: {
+      input: {
+        textAlign: 'center',
+        fontSize: '1.5rem'
+      }
+    }
   }
 })
 
@@ -41,6 +49,9 @@ function App() {
           type="number"
           inputProps={{ min: "0" }}
           onChange={onOfferedChange}></Input>
+
+          <br/>
+          <br/>
           
           {
             !!(desiredPrice &&  offeredPrice) && (
