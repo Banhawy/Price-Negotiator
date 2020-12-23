@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import Input from '@material-ui/core/Input';
+import PriceDifference from './components/PriceDifference';
 
 const theme = createMuiTheme({
   typography: {
@@ -40,6 +41,14 @@ function App() {
           type="number"
           inputProps={{ min: "0" }}
           onChange={onOfferedChange}></Input>
+          
+          {
+            !!(desiredPrice &&  offeredPrice) && (
+              <PriceDifference desiredPrice={desiredPrice} offeredPrice={offeredPrice} />
+            ) 
+          }
+          
+
       </div>
     </ThemeProvider>
   );
