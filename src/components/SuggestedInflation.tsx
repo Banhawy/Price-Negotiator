@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { makeStyles, Typography } from '@material-ui/core'
-import Grid from '@material-ui/core/Grid'
+import { makeStyles, Paper, Typography } from '@material-ui/core'
 import PriceContext from '../PriceContext'
 
 interface ISuggestedInflationProps {
@@ -27,15 +26,10 @@ export default function SuggestedInflation(props: ISuggestedInflationProps) {
     const newPrice = calculateNewPrice(offeredPrice, percentage)
 
     return (
-        <Grid container spacing={0} className={classes.root}>
-            <Grid item xs={4}>
-                <Typography variant="h6" align="right">
-                <span className={classes.green}> +{percentage}%</span> = &nbsp;
-                </Typography>
-            </Grid>
-            <Grid item xs={8}>
-                <Typography variant="h6" align="left">{newPrice}</Typography>
-            </Grid>
-        </Grid>
+        <Paper>
+            <Typography variant="h6" align="center">
+                <span className={classes.green}> +{percentage}%</span> = {newPrice}
+            </Typography>
+        </Paper>
     )
 }
