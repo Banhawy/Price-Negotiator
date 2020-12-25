@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { Fragment, useContext } from 'react';
 import Box from '@material-ui/core/Box';
 import PriceContext from '../PriceContext';
 
@@ -17,11 +17,17 @@ export default function PriceDifference() {
     const textStyle: React.CSSProperties = { color: isPositive ? 'green' : 'red' } 
     return (
         <div>
-            The offered price is&nbsp;
-            <Box component="span" style={textStyle}>
-                {percentageValue}% - {numberValue} &nbsp;
-            </Box>
-            <strong>{isPositive ? 'MORE ' : 'LESS '}</strong> than your desired price.
+            {
+                !!(desiredPrice && offeredPrice) && (
+                    <Fragment>
+                        The offered price is&nbsp;
+                        <Box component="span" style={textStyle}>
+                            {percentageValue}% - {numberValue} &nbsp;
+                        </Box>
+                        <strong>{isPositive ? 'MORE ' : 'LESS '}</strong> than your desired price.
+                    </Fragment>
+                ) 
+            }
         </div>
     )
 }
