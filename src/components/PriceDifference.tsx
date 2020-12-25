@@ -1,10 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Box from '@material-ui/core/Box';
-
-interface PriceDifferenceProps {
-    desiredPrice: number;
-    offeredPrice: number;
-}
+import PriceContext from '../PriceContext';
 
 function calculateDifference(firstNumber: number, secondNumber: number) {
     const absNumberValue : (number: number) => number = (value) => Math.abs(value)
@@ -15,8 +11,8 @@ function calculateDifference(firstNumber: number, secondNumber: number) {
     return { percentageValue, numberValue, isPositive }
 }
 
-export default function PriceDifference(props: PriceDifferenceProps) {
-    const { desiredPrice, offeredPrice } = props
+export default function PriceDifference() {
+    const { desiredPrice, offeredPrice } = useContext(PriceContext);
     const { percentageValue, numberValue, isPositive } = calculateDifference(offeredPrice, desiredPrice)
     const textStyle: React.CSSProperties = { color: isPositive ? 'green' : 'red' } 
     return (
