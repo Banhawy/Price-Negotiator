@@ -4,6 +4,7 @@ import { Typography } from '@material-ui/core';
 import Input from '@material-ui/core/Input';
 import PriceDifference from './components/PriceDifference';
 import PriceContext, { IPriceContext } from './PriceContext'
+import SuggestedInflationGrid from './components/SuggestedInflationGrid';
 
 const theme = createMuiTheme({
   typography: {
@@ -74,7 +75,10 @@ function App() {
           <br />
           {
             !!(desiredPrice && offeredPrice) && (
-                <PriceDifference />
+                <div>
+                  <PriceDifference />
+                  <SuggestedInflationGrid />
+                </div>
             )
           }
 
