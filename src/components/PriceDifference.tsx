@@ -17,17 +17,13 @@ export default function PriceDifference() {
     const textStyle: React.CSSProperties = { color: isPositive ? 'green' : 'red' } 
     return (
         <div>
-            {
-                !!(desiredPrice && offeredPrice) && (
-                    <Fragment>
-                        The offered price is&nbsp;
-                        <Box component="span" style={textStyle}>
-                            {percentageValue}% - {numberValue} &nbsp;
-                        </Box>
-                        <strong>{isPositive ? 'MORE ' : 'LESS '}</strong> than your desired price.
-                    </Fragment>
-                ) 
-            }
+            <Fragment>
+                The offered price is&nbsp;
+                <Box component="span" style={textStyle}>
+                    {percentageValue}% - {numberValue} &nbsp;
+                </Box>
+                <strong>{isPositive ? 'MORE ' : 'LESS '}</strong> than your desired price.
+            </Fragment>
         </div>
     )
 }

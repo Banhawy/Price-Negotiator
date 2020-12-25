@@ -35,7 +35,7 @@ function App() {
     let priceDifference = offeredPrice - desiredPrice
     
     setOfferedPrice(offeredPrice)
-    
+
     if (priceDifference < 0) {
       setOfferedColor('red')
     }
@@ -72,8 +72,11 @@ function App() {
 
           <br />
           <br />
-
-          <PriceDifference />
+          {
+            !!(desiredPrice && offeredPrice) && (
+                <PriceDifference />
+            )
+          }
 
 
         </div>
