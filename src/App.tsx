@@ -21,13 +21,27 @@ const theme = createMuiTheme({
 function App() {
   const [desiredPrice, setDesiredPrice] = useState(0);
   const [offeredPrice, setOfferedPrice] = useState(0);
+  const [offeredColor, setOfferedColor] = useState('inherit');
 
   const onDesiredChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setDesiredPrice(Number(event.target.value))
   }
 
   const onOfferedChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setOfferedPrice(Number(event.target.value))
+    let offeredPrice = Number(event.target.value)
+    setOfferedPrice(offeredPrice)
+    let priceDifference = offeredPrice - desiredPrice
+
+    if (priceDifference < 0) {
+      setOfferedColor('red')
+    }
+    else if (priceDifference > 0) {
+      setOfferedColor('green')
+    }
+    else {
+      setOfferedColor('black')
+    }
+
   }
 
   return (
@@ -48,6 +62,7 @@ function App() {
         <Input
           type="number"
           inputProps={{ min: "0" }}
+          style={{color: offeredColor}}
           onChange={onOfferedChange}></Input>
 
           <br/>

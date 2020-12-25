@@ -1,4 +1,5 @@
 import React from 'react';
+import Box from '@material-ui/core/Box';
 
 interface PriceDifferenceProps {
     desiredPrice: number;
@@ -17,10 +18,14 @@ function calculateDifference(firstNumber: number, secondNumber: number) {
 export default function PriceDifference(props: PriceDifferenceProps) {
     const { desiredPrice, offeredPrice } = props
     const { percentageValue, numberValue, isPositive } = calculateDifference(offeredPrice, desiredPrice)
-
+    const textStyle: React.CSSProperties = { color: isPositive ? 'green' : 'red' } 
     return (
         <div>
-            The offered price is {percentageValue}% - {numberValue} <strong>{isPositive ? 'MORE ' : 'LESS '}</strong> than your desired price.
+            The offered price is&nbsp;
+            <Box component="span" style={textStyle}>
+                {percentageValue}% - {numberValue} &nbsp;
+            </Box>
+            <strong>{isPositive ? 'MORE ' : 'LESS '}</strong> than your desired price.
         </div>
     )
 }
