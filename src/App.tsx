@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
 import Input from '@material-ui/core/Input';
 import PriceDifference from './components/PriceDifference';
 import PriceContext, { IPriceContext } from './PriceContext'
@@ -52,38 +52,38 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <PriceContext.Provider value={priceContext}>
-        <div className="App" style={{ textAlign: 'center' }}>
-          <Typography variant="h2">Price Negotiator</Typography>
+        <Container maxWidth="md">
+          <div className="App" style={{ textAlign: 'center' }}>
+            <Typography variant="h2">Price Negotiator</Typography>
 
-        Enter Desired Price
-        <Input
-            type="number"
-            inputProps={{ min: "0" }}
-            onChange={onDesiredChange}></Input>
+          Enter Desired Price
+          <Input
+              type="number"
+              inputProps={{ min: "0" }}
+              onChange={onDesiredChange}></Input>
 
-          <br />
-          <br />
+            <br />
+            <br />
 
-        Enter Offered Price
-        <Input
-            type="number"
-            inputProps={{ min: "0" }}
-            style={{ color: offeredColor }}
-            onChange={onOfferedChange}></Input>
+          Enter Offered Price
+          <Input
+              type="number"
+              inputProps={{ min: "0" }}
+              style={{ color: offeredColor }}
+              onChange={onOfferedChange}></Input>
 
-          <br />
-          <br />
-          {
-            !!(desiredPrice && offeredPrice) && (
-                <div>
-                  <PriceDifference />
-                  <SuggestedInflationGrid />
-                </div>
-            )
-          }
-
-
-        </div>
+            <br />
+            <br />
+            {
+              !!(desiredPrice && offeredPrice) && (
+                  <div>
+                    <PriceDifference />
+                    <SuggestedInflationGrid />
+                  </div>
+              )
+            }
+          </div>
+        </Container>
       </PriceContext.Provider>
     </ThemeProvider>
   );
