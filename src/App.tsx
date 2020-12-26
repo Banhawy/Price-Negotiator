@@ -5,6 +5,7 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import PriceDifference from './components/PriceDifference';
 import PriceContext, { IPriceContext } from './PriceContext'
 import SuggestedInflationGrid from './components/SuggestedInflationGrid';
+import NumberFormat from 'react-number-format';
 
 const theme = createMuiTheme({
   typography: {
@@ -15,9 +16,6 @@ const theme = createMuiTheme({
       input: {
         textAlign: 'center',
         fontSize: '1.5rem'
-      },
-      focused: {
-        color: 'black'
       }
     }
   }
@@ -30,12 +28,8 @@ function App() {
 
   const priceContext: IPriceContext = { desiredPrice, offeredPrice }
 
-  const onDesiredChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setDesiredPrice(Number(event.target.value))
-  }
-
-  const onOfferedChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    let offeredPrice = Number(event.target.value)
+  const onOfferedChange = (price: number) => {
+    let offeredPrice = price
     let priceDifference = offeredPrice - desiredPrice
 
     setOfferedPrice(offeredPrice)
@@ -62,11 +56,14 @@ function App() {
             <div style={{ border: '3px solid', borderRadius: '8px', padding: '1rem' }}>
               <Typography variant="h5">
                 Enter Desired Price
-                <OutlinedInput
-                  type="number"
-                  inputProps={{ min: "0" }}
-                  style={{ marginLeft: '2rem' }}
-                  onChange={onDesiredChange}></OutlinedInput>
+                  <NumberFormat customInput={OutlinedInput} 
+                    value={desiredPrice}
+                    thousandSeparator={true}
+                    allowNegative={false}
+                    style={{ marginLeft: '2rem' }}
+                    onValueChange={(values) => {
+                      setDesiredPrice(Number(values.value))
+                    }}/>
               </Typography>
 
 
@@ -75,11 +72,14 @@ function App() {
 
               <Typography variant="h5">
                 Enter Offered Price
-              <OutlinedInput
-                  type="number"
-                  inputProps={{ min: "0" }}
-                  style={{ color: offeredColor, marginLeft: '2rem' }}
-                  onChange={onOfferedChange}></OutlinedInput>
+                <NumberFormat customInput={OutlinedInput} 
+                    value={offeredPrice}
+                    thousandSeparator={true}
+                    allowNegative={false}
+                    style={{ marginLeft: '2rem', color: offeredColor }}
+                    onValueChange={(values) => {
+                      onOfferedChange(Number(values.value))
+                    }}/>
               </Typography>
 
             </div>

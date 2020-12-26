@@ -1,13 +1,14 @@
 import React, { useContext } from 'react'
 import { makeStyles, Paper, Typography } from '@material-ui/core'
 import PriceContext from '../PriceContext'
+import FormattedNumber from './FormattedNumber'
 
 interface ISuggestedInflationProps {
     percentage: number
 }
 
 function calculateNewPrice(price: number, percentage: number) {
-    return (price * ((100 + percentage) / 100)).toFixed(2)
+    return Number((price * ((100 + percentage) / 100)).toFixed(2))
 }
 
 const useStyles = makeStyles({
@@ -36,7 +37,7 @@ export default function SuggestedInflation(props: ISuggestedInflationProps) {
     return (
         <Paper style={styleObject}>
             <Typography variant="h6" align="center">
-                <span className={classes.green}> +{percentage}%</span> = {newPrice}
+                <span className={classes.green}> +{percentage}%</span> = <FormattedNumber number={newPrice} />
             </Typography>
         </Paper>
     )

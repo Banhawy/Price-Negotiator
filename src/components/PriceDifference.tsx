@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import Box from '@material-ui/core/Box';
 import PriceContext from '../PriceContext';
 import Typography from '@material-ui/core/Typography';
+import FormattedNumber from './FormattedNumber';
 
 function calculateDifference(firstNumber: number, secondNumber: number) {
     const absNumberValue : (number: number) => number = (value) => Math.abs(value)
@@ -21,7 +22,7 @@ export default function PriceDifference() {
             <Typography variant="body1">
                 The offered price is&nbsp;
                 <Box component="span" style={textStyle}>
-                    {percentageValue}% - {numberValue} &nbsp;
+                    <FormattedNumber number={percentageValue}/>% - <FormattedNumber number={numberValue}/> &nbsp;
                 </Box>
                 <strong>{isPositive ? 'MORE ' : 'LESS '}</strong> than your desired price.
             </Typography>
