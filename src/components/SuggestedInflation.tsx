@@ -26,7 +26,7 @@ export default function SuggestedInflation(props: ISuggestedInflationProps) {
     const newPrice = calculateNewPrice(offeredPrice, percentage)
 
     return (
-        <Paper>
+        <Paper style={{border: '1px solid'}}>
             <Typography variant="h6" align="center">
                 <span className={classes.green}> +{percentage}%</span> = {newPrice}
             </Typography>

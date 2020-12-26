@@ -34,7 +34,7 @@ function App() {
   const onOfferedChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     let offeredPrice = Number(event.target.value)
     let priceDifference = offeredPrice - desiredPrice
-    
+
     setOfferedPrice(offeredPrice)
 
     if (priceDifference < 0) {
@@ -56,30 +56,38 @@ function App() {
           <div className="App" style={{ textAlign: 'center' }}>
             <Typography variant="h2">Price Negotiator</Typography>
 
-          Enter Desired Price
-          <Input
-              type="number"
-              inputProps={{ min: "0" }}
-              onChange={onDesiredChange}></Input>
+            <div style={{ border: '3px solid', borderRadius: '8px', padding: '1rem' }}>
+              <Typography variant="h5">
+                Enter Desired Price
+                <Input
+                  type="number"
+                  inputProps={{ min: "0" }}
+                  onChange={onDesiredChange}></Input>
+              </Typography>
 
-            <br />
-            <br />
 
-          Enter Offered Price
-          <Input
-              type="number"
-              inputProps={{ min: "0" }}
-              style={{ color: offeredColor }}
-              onChange={onOfferedChange}></Input>
+              <br />
+              <br />
+
+              <Typography variant="h5">
+                Enter Offered Price
+              <Input
+                  type="number"
+                  inputProps={{ min: "0" }}
+                  style={{ color: offeredColor }}
+                  onChange={onOfferedChange}></Input>
+              </Typography>
+
+            </div>
 
             <br />
             <br />
             {
               !!(desiredPrice && offeredPrice) && (
-                  <div>
-                    <PriceDifference />
-                    <SuggestedInflationGrid />
-                  </div>
+                <div>
+                  <PriceDifference />
+                  <SuggestedInflationGrid />
+                </div>
               )
             }
           </div>
