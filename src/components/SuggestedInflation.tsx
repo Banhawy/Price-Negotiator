@@ -25,8 +25,16 @@ export default function SuggestedInflation(props: ISuggestedInflationProps) {
     const classes = useStyles()
     const newPrice = calculateNewPrice(offeredPrice, percentage)
 
+    const styleObject = {
+        border: '1px solid', 
+        height: '3rem', 
+        display: 'flex',
+        justifyContent: 'center', 
+        alignItems: 'center'
+    }
+
     return (
-        <Paper style={{border: '1px solid'}}>
+        <Paper style={styleObject}>
             <Typography variant="h6" align="center">
                 <span className={classes.green}> +{percentage}%</span> = {newPrice}
             </Typography>

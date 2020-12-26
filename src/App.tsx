@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Container, Typography } from '@material-ui/core';
-import Input from '@material-ui/core/Input';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import PriceDifference from './components/PriceDifference';
 import PriceContext, { IPriceContext } from './PriceContext'
 import SuggestedInflationGrid from './components/SuggestedInflationGrid';
@@ -11,10 +11,13 @@ const theme = createMuiTheme({
     fontFamily: ['Balsamiq Sans', 'Roboto', 'sans-serif'].join(',')
   },
   overrides: {
-    MuiInput: {
+    MuiOutlinedInput: {
       input: {
         textAlign: 'center',
         fontSize: '1.5rem'
+      },
+      focused: {
+        color: 'black'
       }
     }
   }
@@ -59,10 +62,11 @@ function App() {
             <div style={{ border: '3px solid', borderRadius: '8px', padding: '1rem' }}>
               <Typography variant="h5">
                 Enter Desired Price
-                <Input
+                <OutlinedInput
                   type="number"
                   inputProps={{ min: "0" }}
-                  onChange={onDesiredChange}></Input>
+                  style={{ marginLeft: '2rem' }}
+                  onChange={onDesiredChange}></OutlinedInput>
               </Typography>
 
 
@@ -71,11 +75,11 @@ function App() {
 
               <Typography variant="h5">
                 Enter Offered Price
-              <Input
+              <OutlinedInput
                   type="number"
                   inputProps={{ min: "0" }}
-                  style={{ color: offeredColor }}
-                  onChange={onOfferedChange}></Input>
+                  style={{ color: offeredColor, marginLeft: '2rem' }}
+                  onChange={onOfferedChange}></OutlinedInput>
               </Typography>
 
             </div>
